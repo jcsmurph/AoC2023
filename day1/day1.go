@@ -8,6 +8,25 @@ import (
 	"strconv"
 )
 
+var lookUpTable = map[string]int{
+	"one":   1,
+	"two":   2,
+	"three": 3,
+	"four":  4,
+	"five":  5,
+	"six":   6,
+	"seven": 7,
+	"eight": 8,
+	"nine":  9,
+}
+
+func match(s string) int {
+	if val, ok := lookUpTable[s]; ok {
+		return val
+	}
+	return -1
+}
+
 func Day1Solution() {
 
 	input, err := os.Open("day1/input.txt")
@@ -25,10 +44,10 @@ func Day1Solution() {
 		for i := 0; i < len(scanner.Text()); i++ {
 			if _, err := strconv.Atoi(string(scanner.Text()[i])); err == nil {
 				if leftMost == -1 {
-                    leftMost, err = strconv.Atoi(string(scanner.Text()[i]))
-                    rightMost, err = strconv.Atoi(string(scanner.Text()[i]))
+					leftMost, err = strconv.Atoi(string(scanner.Text()[i]))
+					rightMost, err = strconv.Atoi(string(scanner.Text()[i]))
 				} else {
-                    rightMost, err = strconv.Atoi(string(scanner.Text()[i]))
+					rightMost, err = strconv.Atoi(string(scanner.Text()[i]))
 				}
 			}
 		}
@@ -36,5 +55,6 @@ func Day1Solution() {
 
 	}
 
-	fmt.Println(result)
+	fmt.Printf("Day one solution: %v", result)
+    fmt.Println()
 }
